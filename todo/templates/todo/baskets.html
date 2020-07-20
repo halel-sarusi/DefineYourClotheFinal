@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <title>#DefineYourClothes</title>
+    </head>
+
+    <body>
+        <header>
+            <div></div>
+            <a href="{% url 'mainpage' %}">#DefineYourClothes</a>
+            <img src="{% static 'images/qr.png' %}" alt="qr">     
+        </header>
+
+        <main id="mainBaskets">
+            <div>Hello {{user.username}}</div>
+            <h1 class="h">Laundry baskets</h1>
+            <nav class="breadCrumbs">
+                <a href="{% url 'mainpage' %}">Home/</a>
+                <a href="{% url 'baskets' %}">Laundry baskets</a>
+            </nav>
+
+            <div class="Box-selection">
+                <section class="baskets">
+                    <a href="#"> <img src="{% static 'images/basket.png' %}" alt="dark" title="dark"></a>
+                    <a href="#">DARK</a>
+                </section>
+
+                <section class="baskets">
+                    <a href="#"> <img src="{% static 'images/basket.png' %}" alt="light soft" title="light soft"></a>
+                    <a href="#">LIGHT SOFT</a>
+                </section>
+
+                <section class="baskets">
+                    <a href="{% url 'myitems' %}"> <img src="{% static 'images/basket.png' %}" alt="dark soft" title="dark soft"></a>
+                    <a  href="{% url 'myitems' %}">DARK SOFT</a>
+                </section>
+            </div>
+
+        </main>
+
+        <footer>
+            <a  href="{% url 'mainpage' %}"><img src="{% static 'images/home.png' %}" alt="home"></a>
+            <a  href="{% url 'newitem' %}"><img src="{% static 'images/add.png' %}" alt="add"></a>
+            <a  href="#"><img src="{% static 'images/notice.png' %}" alt="notice"></a>
+            <a  href="{% url 'homepage' %}"><img src="{% static 'images/user.png' %}" alt="user"></a>
+        </footer>
+
+        <script src="{% static 'includes/script.js' %}"></script>
+        <script>(updateKG());</script>    
+    </body>
+</html>

@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+        <title>#DefineYourClothes</title>
+    </head>
+
+    <body>
+        <header>
+            <div></div>
+            <a href="{% url 'mainpage' %}">#DefineYourClothes</a>
+            <img src="{% static 'images/qr.png' %}" alt="qr">     
+        </header>
+
+        <div>Hello {{user.username}}</div>
+        <main>
+            <div class="Box-selection">
+                <section>
+                    <a href="#"> <img src="{% static 'images/start.png' %}" alt="start" title="start"></a>
+                    <a href="#">START</a>
+                </section>
+    
+                <section>
+                    <a href="{% url 'baskets' %}"> <img src="{% static 'images/basket.png' %}" alt="laundry basket" title="laundry basket"></a>
+                    <a href="{% url 'baskets' %}">LAUNDRY BASKET</a>
+                </section>
+    
+                <section>
+                    <a href="#"> <img src="{% static 'images/consumption.png' %}" alt="consumption" title="consumption"></a>
+                    <a href="#">CONSUMPTION</a>
+                </section>
+            
+                <section>
+                    <a href="#"> <img src="{% static 'images/time.png' %}" alt="history" title="history"></a>
+                    <a href="#">HISTORY</a>
+                </section>
+
+                <section>
+                    <a href="#"> <img src="{% static 'images/calender.png' %}" alt="schedule" title="schedule"></a>
+                    <a href="#">SCHEDULE</a>
+                </section>
+
+                <section>
+                    <a href="#"> <img src="{% static 'images/closet.png' %}" alt="closet" title="closet"></a>
+                    <a href="#">CLOSET</a>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <a  href="{% url 'mainpage' %}"><img src="{% static 'images/home.png' %}" alt="home"></a>
+            <a  href="{% url 'newitem' %}"><img src="{% static 'images/add.png' %}" alt="add"></a>
+            <a  href="#"><img src="{% static 'images/notice.png' %}" alt="notice"></a>
+            <a  href="{% url 'homepage' %}"><img src="{% static 'images/user.png' %}" alt="user"></a>
+        </footer>
+    </body>
+</html>

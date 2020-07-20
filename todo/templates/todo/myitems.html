@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="{% static 'includes/script.js' %}"></script>
+        <title>#DefineYourClothes</title>
+    </head>
+    <body>
+        <header>
+            <div></div>
+            <a href="{% url 'mainpage' %}">#DefineYourClothes</a>
+            <img src="{% static 'images/qr.png' %}" alt="qr">     
+        </header>
+
+        {% if user.is_authenticated %}
+        <div>Hello {{user.username}}</div>
+            <h1>{{user.username}}'s items</h1>
+            <nav class="breadCrumbs" id="breadCrumbsSpecial">
+                <a href="{% url 'mainpage' %}">Home/</a>
+                <a href="{% url 'baskets' %}">Laundry baskets/</a>
+                <a href="{% url 'myitems' %}">Dark soft - my items</a>        
+            </nav>
+            <br><br>
+            <h2>List of all my items</h2>
+            <form action="{% url 'logoutuser' %}" method="POST">
+                <ul>
+                    <ol>
+                        {% for t in allitems %}
+                            <li id="listmytodo">
+                                <a href="todo/{{t.id}}" id="formMydoto">
+                                    {{t.title}},
+                                    {{t.basket}},
+                                    {{t.size}},
+                                    {{t.color}},
+                                    {{t.dateCreated}}, 
+                                    {{t.isImportant}},
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </ul>
+
+                <br><br>
+                <a href="/newitem" class="todo">New item</a>
+                <span>|</span>
+                <a href="/allitems" class="todo">See others items</a>
+                <br><br><br>
+
+                {% csrf_token %}
+                <a href="{% url 'baskets' %}" class="button">Back</a>
+            </form>
+        {% else %}
+            <a href="#">Login</a>
+            <a href="register">Register</a>
+        {% endif %}
+
+        <footer>
+            <a  href="{% url 'mainpage' %}"><img src="{% static 'images/home.png' %}" alt="home"></a>
+            <a  href="{% url 'newitem' %}"><img src="{% static 'images/add.png' %}" alt="add"></a>
+            <a  href="#"><img src="{% static 'images/notice.png' %}" alt="notice"></a>
+            <a  href="{% url 'homepage' %}"><img src="{% static 'images/user.png' %}" alt="user"></a>
+        </footer>
+    </body>
+</html>

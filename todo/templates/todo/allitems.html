@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <title>#DefineYourClothes</title>
+ 	</head>
+ 	<body>
+        <header>
+            <div></div>
+            <a href="{% url 'mainpage' %}">#DefineYourClothes</a>
+            <img src="{% static 'images/qr.png' %}" alt="qr">     
+        </header>
+
+        {% if user.is_authenticated %}
+        <div>Hello {{user.username}}</div>
+        <h1>All items</h1>
+            <div id="alltodo">
+                <a href="/myitems" id="back">Back to my items</a><br><br>
+                <span><img id = "Arrow" src="{% static 'images/accept.png'%}" alt="accept">ShowAll / HideAll</span>
+            </div>
+
+            <div id="boks">
+                {% for u in users %}
+                <section>
+                    <h4>{{u.username}}'s items:</h4>
+                    <ol>
+                        {% for t in allitems %}
+                            <div class="items">
+                                {% if t.user_id_id == u.id %}
+                                    <li class="allItems">
+                                        {% if t.user_id_id == user.id %}
+                                            <a href="{% url 'edititem' t.id %}" class="assign">
+                                                <img src="{% static 'images/edit.png' %}" alt="start" title="start" class="editRandom">Edit</a>
+                                        {% else %}
+                                            <a href="/assigntome/{{t.id}}" class="assign">
+                                                <img src="{% static 'images/random.png' %}" alt="start" title="start" class="editRandom">Assign to me</a><span> | </span>
+                                        {% endif %}
+
+                                        {{t.item_type}}
+                                        <div>
+                                            {{t.title}},
+                                            {{t.basket}},
+                                            {{t.size}},
+                                            {{t.color}},
+                                            {{t.dateCreated}}, 
+                                        </div>
+                
+                                    </li>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </ol>
+                </section>
+                {% endfor %}
+            </div>
+        {% else %}
+            <a href="">Login</a>
+            <a href="">Register</a>
+        {% endif %}
+
+        <footer>
+            <a  href="{% url 'mainpage' %}"><img src="{% static 'images/home.png' %}" alt="home"></a>
+            <a  href="{% url 'newitem' %}"><img src="{% static 'images/add.png' %}" alt="add"></a>
+            <a  href="#"><img src="{% static 'images/notice.png' %}" alt="notice"></a>
+            <a  href="{% url 'homepage' %}"><img src="{% static 'images/user.png' %}" alt="user"></a>
+
+        </footer>
+        <script src="{% static 'includes/script.js'%}"></script>
+        <script>
+            (calcDS());
+        </script>
+    </body>
+</html>

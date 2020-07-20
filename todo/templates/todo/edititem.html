@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+ 	<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <title>#DefineYourClothes</title>
+ 	</head>
+ 	<body>
+        <header>
+            <div></div>
+            <a href="{% url 'mainpage' %}">#DefineYourClothes</a>
+            <img src="{% static 'images/qr.png' %}" alt="qr">     
+        </header>
+
+        <div>Hello {{user.username}}</div>
+        {% if user.is_authenticated %}
+            <h1>Edit item {{todo.title}}</h1>
+            
+            <form action="#" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type='submit' class="button">Save</button>
+                <br><br>
+            </form>
+
+            <form action="{% url 'deleteTodo' todo.id %}" method="POST" id="buttonDelete">
+                {% csrf_token %}
+                <button type='submit' class="button">Delete Item</button>
+            </form>  
+        {% endif %}
+
+        <footer>
+            <a  href="{% url 'mainpage' %}"><img src="{% static 'images/home.png' %}" alt="home"></a>
+            <a  href="{% url 'newitem' %}"><img src="{% static 'images/add.png' %}" alt="add"></a>
+            <a  href="#"><img src="{% static 'images/notice.png' %}" alt="notice"></a>
+            <a  href="{% url 'homepage' %}"><img src="{% static 'images/user.png' %}" alt="user"></a>
+
+        </footer>
+    </body>
+</html>
